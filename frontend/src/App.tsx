@@ -1,14 +1,13 @@
-// import React from 'react';
+import React from 'react';
 import './App.css';
-
-function App() {
-  return (
-    <div>
-      <header>
+class App extends React.Component {
+  render() {
+    return (
+      <div>
         <h1>Hello World</h1>
-      </header>
-    </div>
-  );
+      </div>
+    );
+  }
 }
 
 export default App;
