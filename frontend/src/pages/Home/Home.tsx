@@ -1,15 +1,13 @@
 import React from 'react';
 
-import Home from './pages/Home/Home';
-
-class App extends React.Component {
+class Home extends React.Component {
     render(): JSX.Element {
         return (
             <div>
-                <Home />
+                <h1>HOME PAGE</h1>
             </div>
         );
     }
 }
 
-export default App;
+export default Home;
