@@ -1,13 +1,13 @@
-import React from 'react'
-import './App.css'
+import React from 'react';
+import './App.css';
 
 class App extends React.Component {
-    render() {
+    render(): JSX.Element {
         return (
             <div>
                 <h1>Hello World</h1>
             </div>
-        )
+        );
     }
 }
 
