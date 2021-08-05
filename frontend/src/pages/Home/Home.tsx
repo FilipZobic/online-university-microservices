@@ -1,13 +1,33 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import classes from './Home.module.css';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 
 class Home extends React.Component {
     render(): JSX.Element {
         return (
-            <div>
-                <h1>HOME PAGE</h1>
-                <Button>Hello</Button>
-            </div>
+            <Container>
+                <Row>
+                    <Col></Col>
+                    <Col>
+                        <br />
+                        <h1>Online Universety</h1>
+                    </Col>
+                    <Col></Col>
+                </Row>
+                <Row>
+                    <Col></Col>
+                    <Col>
+                        <br />
+                        <Button className={classes.Button} size="lg" variant="primary">
+                            Login
+                        </Button>
+                        <Button className={classes.Button} size="lg" variant="primary">
+                            Signup
+                        </Button>
+                    </Col>
+                    <Col></Col>
+                </Row>
+            </Container>
         );
     }
 }
