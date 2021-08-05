@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: email-service
+  cloud:
+    config:
+      uri: http://localhost:8888
+  main.allow-bean-definition-overriding: true
+  messages:
+    basename: i18n/messages
+    encoding: UTF-8
+  mail:
+    host: ${EMAIL_HOST}
+    port: ${EMAIL_PORT}
+    username: ${EMAIL_USERNAME}
+    password: ${EMAIL_PASSWORD}
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: ${RABBITMQ_USERNAME}
+    password: ${RABBITMQ_PASSWORD}
+    exchange: email.exchange
+    queue: email.que
+    routingkey: email.routingkey
+server:
+  port: 8082
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${random.uuid}
+confirmation:
+  domain:
+    name: http://localhost:8083
+mail:
+  automatic:
+    address: noreply@localhost.com
