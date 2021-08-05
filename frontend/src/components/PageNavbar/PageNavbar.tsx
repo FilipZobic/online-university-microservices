@@ -20,9 +20,6 @@ class PageNavbar extends React.Component {
                         <Nav.Link as={Link} to="/login">
                             Login
                         </Nav.Link>
-                        <Nav.Link as={Link} to="/signup">
-                            Signup
-                        </Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>
