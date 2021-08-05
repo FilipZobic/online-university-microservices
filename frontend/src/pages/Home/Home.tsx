@@ -1,6 +1,7 @@
 import React from 'react';
-import classes from './Home.module.css';
 import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import classes from './Home.module.css';
 
 class Home extends React.Component {
     render(): JSX.Element {
@@ -18,12 +19,17 @@ class Home extends React.Component {
                     <Col></Col>
                     <Col>
                         <br />
-                        <Button className={classes.Button} size="lg" variant="primary">
-                            Login
-                        </Button>
-                        <Button className={classes.Button} size="lg" variant="primary">
-                            Signup
-                        </Button>
+                        <Link to="/login">
+                            <Button className={classes.Button} size="lg" variant="primary">
+                                Login
+                            </Button>
+                        </Link>
+
+                        <Link to="/signup">
+                            <Button className={classes.Button} size="lg" variant="primary">
+                                Signup
+                            </Button>
+                        </Link>
                     </Col>
                     <Col></Col>
                 </Row>
