@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 class PageNavbar extends React.Component {
     render(): JSX.Element {
+        console.log(this.props);
         return (
             <Navbar bg="dark" variant="dark">
                 <Container>
