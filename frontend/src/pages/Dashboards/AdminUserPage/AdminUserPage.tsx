@@ -3,6 +3,7 @@ import { Table, Row, Col, Container, Button, Spinner } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import { Dispatch } from 'redux';
+import { disableUser, softDeleteUser } from '../../../api/users/users';
 import { UserAction } from '../../../models/users/user';
 import { getAllUsers } from '../../../store/actions/users/actions';
 import { authReducerState } from '../../../store/reducers/auth';
@@ -36,6 +37,28 @@ class AdminUserPage extends React.Component<AdminUserPageProps, AdminUserPageSta
         });
     };
 
+    onDeleteClickHandler = (id: string): void => {
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        softDeleteUser(id, this.props.auth.token!).then((_) => {
+            console.log(_);
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            this.props.getAllUsers(this.props.auth.token!);
+        });
+    };
+
+    onEnableClickHandler = (id: string, email: string, username: string, isEnabled: boolean): void => {
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        disableUser(id, email, username, isEnabled, this.props.auth.token!)
+            .then((_) => {
+                console.log(_);
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                this.props.getAllUsers(this.props.auth.token!);
+            })
+            .catch((_) => {
+                console.log(_);
+            });
+    };
+
     render(): JSX.Element {
         let redirect = null;
         let content = null;
@@ -51,8 +74,13 @@ class AdminUserPage extends React.Component<AdminUserPageProps, AdminUserPageSta
                             <th>Username</th>
                             <th>Email</th>
                             <th>Enabled</th>
+                            <th>Update</th>
+                            <th>Delete</th>
                         </tr>
                         {this.props.users.users?.map((value, index) => {
+                            if (value.isDeleted) {
+                                return;
+                            }
                             return (
                                 // eslint-disable-next-line react/jsx-key
                                 <tr>
@@ -60,6 +88,24 @@ class AdminUserPage extends React.Component<AdminUserPageProps, AdminUserPageSta
                                     <td>{value.username}</td>
                                     <td>{value.email}</td>
                                     <td>{value.isEnabled.toString()}</td>
+                                    <td>
+                                        <button
+                                            onClick={() =>
+                                                this.onEnableClickHandler(
+                                                    value.id,
+                                                    value.email,
+                                                    value.username,
+                                                    !value.isEnabled,
+                                                )
+                                            }
+                                        >
+                                            Update
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button onClick={() => this.onDeleteClickHandler(value.id)}>Delete</button>
+                                    </td>
+                                    <td></td>
                                 </tr>
                             );
                         })}
