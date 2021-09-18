@@ -30,6 +30,8 @@ Relational database of choice is PostgreSql.
 Messaging queue is RabbitMQ.
 
 ### Services:
+* cloud-server - cloud discovery server
+* email-service - service for sending emails
 ### Installation:
 #### Requirements:
 * RabbitMQ
